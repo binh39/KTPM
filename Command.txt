@@ -1,0 +1,13 @@
+sudo apt-get update
+sudo apt-get install -y \
+  xfce4 \
+  x11vnc \
+  xfce4-goodies \
+  dbus-x11 \
+  xvfb \
+
+echo '#!/bin/sh' > /home/binh/.vnc/xstartup
+echo 'startxfce4 &' >> /home/binh/.vnc/xstartup
+chmod +x /home/binh/.vnc/xstartup
+vncserver -kill :1
+vncserver :1 -geometry 1280x800 -depth 24

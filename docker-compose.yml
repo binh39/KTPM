@@ -1,0 +1,12 @@
+version: "3"
+services:
+  ssh-desktop:
+    build: .
+    ports:
+      - "2222:22" # SSH
+      - "5901:5901" # VNC
+    volumes:
+      - ssh-data:/home/binh
+    command: sh -c "rm -f /tmp/.X*-lock /tmp/.X11-unix/X* && su - binh -c 'vncserver :1 -geometry 1280x800' && /usr/sbin/sshd -D"
+volumes:
+  ssh-data:
